@@ -1,0 +1,19 @@
+{
+    "name": "CascadaBundle",
+    "author": "Filip Sobalski <pinkeen@gmail.com>",
+    "license": "MIT",
+    "dependencies": {
+        "grunt": "^0.4.4",
+        "grunt-shell": "^0.6.4",
+        "grunt-contrib-concat": "^0.3.0",
+        "grunt-contrib-uglify": "^0.4.0",
+        "grunt-contrib-watch": "^0.6.0",
+        "grunt-sass": "^0.14.0",
+        "grunt-contrib-sass": "^0.8.1",
+        "grunt-contrib-clean": "^0.5.0",
+        "grunt-contrib-copy": "~0.5.0",
+        "lodash": "^2.4.1",
+        "cli-color": "^0.3.2",
+        "colors": "^0.6.2"
+    }
+}
