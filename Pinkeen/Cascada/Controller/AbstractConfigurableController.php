@@ -1,6 +1,7 @@
 <?php
 
 namespace Pinkeen\Cascada\Controller;
+
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
@@ -27,7 +28,9 @@ abstract class AbstractConfigurableController
     public function __construct()
     {
         $optionResolver = new OptionsResolver();
+
         $this->configureDefaults($optionResolver);
+
         $optionResolver->resolve($this->getConfiguration());
     }
 
