@@ -7,15 +7,17 @@ use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
-use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
+use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 use Symfony\Component\Routing\RouterInterface;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\Security\Core\SecurityContextInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Csrf\CsrfToken;
 use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 use Symfony\Component\Templating\EngineInterface;
+use Symfony\Component\Translation\TranslatorInterface;
 
 /**
  * Provides common convenience methods for controllers.
@@ -58,6 +60,11 @@ class BaseController extends ContainerAware
     private $securityContext = null;
 
     /**
+     * @var TranslatorInterface
+     */
+    private $translator = null;
+
+    /**
      * Returns router service.
      *
      * @return null|RouterInterface
@@ -83,6 +90,24 @@ class BaseController extends ContainerAware
         }
 
         return $this->requestStack;
+    }
+
+    /**
+     * Returns current request.
+     *
+     * @return null|Request
+     */
+    protected function getRequest()
+    {
+        return $this->getRequestStack()->getCurrentRequest();
+    }
+
+    /**
+     * @return null|Session
+     */
+    protected function getSession()
+    {
+        return $this->getRequest()->getSession();
     }
 
     /**
@@ -156,6 +181,20 @@ class BaseController extends ContainerAware
     }
 
     /**
+     * Returns security translator service.
+     *
+     * @return null|TranslatorInterface
+     */
+    protected function getTranslator()
+    {
+        if (null === $this->translator) {
+            $this->translator = $this->getService('translator');
+        }
+
+        return $this->translator;
+    }
+
+    /**
      * Returns service by name from the DIC.
      *
      * @param string $name
@@ -192,11 +231,11 @@ class BaseController extends ContainerAware
      * Creates access denied exception.
      *
      * @param $message
-     * @return AccessDeniedHttpException
+     * @return AccessDeniedException
      */
     protected function createAccessDeniedException($message)
     {
-        return new AccessDeniedHttpException($message);
+        return new AccessDeniedException($message);
     }
 
     /**
@@ -245,16 +284,6 @@ class BaseController extends ContainerAware
     }
 
     /**
-     * Returns current request.
-     *
-     * @return null|Request
-     */
-    protected function getRequest()
-    {
-        return $this->getRequestStack()->getCurrentRequest();
-    }
-
-    /**
      * Generates url for the named route.
      *
      * @param string $route
@@ -284,6 +313,8 @@ class BaseController extends ContainerAware
     /**
      * Generates redirect to the referer if present or the the altRoute otherwise.
      *
+     * It will also redirect to altRoute if the referer is an external url (doesn't contain the current baseUrl).
+     *
      * @param string $altRoute
      * @return RedirectResponse
      */
@@ -293,10 +324,101 @@ class BaseController extends ContainerAware
 
         $referer = $request->headers->get('referer');
 
-        if (null !== $referer) {
+        if (null !== $referer && strpos($referer, $request->getBaseUrl()) === 0) {
             return $this->createRedirect($referer);
         }
 
         return $this->createRouteRedirect($altRoute);
+    }
+
+    /**
+     * Checks whether currently logged in user is granted a role.
+     *
+     * @param $role
+     * @return bool
+     */
+    protected function isUserGranted($role)
+    {
+        return $this->getSecurityContext()->isGranted($role);
+    }
+
+    /**
+     * Asserts that currently logged in user is granted a role.
+     *
+     * If not an access denied exception is thrown.
+     *
+     * @param $role
+     * @return bool
+     * @throws AccessDeniedException
+     */
+    protected function assertUserIsGranted($role)
+    {
+        if (!$this->getSecurityContext()->isGranted($role)) {
+            throw $this->createAccessDeniedException("User should be granted '{$role}.'");
+        }
+    }
+
+    /**
+     * Translates the message.
+     *
+     * @param string $id
+     * @param array $params
+     * @param string $domain
+     * @return string
+     */
+    protected function trans($id, array $params = [], $domain = 'cascada_admin')
+    {
+        return $this->getTranslator()->trans($id, $params, $domain);
+    }
+
+    /**
+     * Adds flash message.
+     *
+     * @param string $message
+     * @param string $type
+     */
+    protected function addFlash($message, $type = 'info')
+    {
+        $this->getSession()->getFlashBag()->add($type, $message);
+    }
+
+    /**
+     * Adds error flash message.
+     *
+     * @param $message
+     */
+    protected function addErrorFlash($message)
+    {
+        $this->addFlash($message, 'error');
+    }
+
+    /**
+     * Adds info flash message.
+     *
+     * @param $message
+     */
+    protected function addInfoFlash($message)
+    {
+        $this->addFlash($message, 'info');
+    }
+
+    /**
+     * Adds warning flash message.
+     *
+     * @param $message
+     */
+    protected function addWarningFlash($message)
+    {
+        $this->addFlash($message, 'warning');
+    }
+
+    /**
+     * Adds success flash message.
+     *
+     * @param $message
+     */
+    protected function addSuccessFlash($message)
+    {
+        $this->addFlash($message, 'success');
     }
 }
