@@ -48,7 +48,6 @@ abstract class AbstractReflectiveField extends AbstractField
 
         $optionsResolver->setDefaults([
             'property_path' => $this->getFieldName(),
-            'empty_value' => null,
         ]);
     }
 }

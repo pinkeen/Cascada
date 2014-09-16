@@ -1,9 +1,12 @@
 <?php
 
 namespace Pinkeen\Cascada\Field;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
  * Converts scalar values to string and displays them directly.
+ *
+ * Good for short strings, ints and floats if you don't need formatting.
  */
 class ScalarField extends AbstractReflectiveField
 {
@@ -47,4 +50,16 @@ class ScalarField extends AbstractReflectiveField
 
         return false;
     }
-} 
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function configureDefaults(OptionsResolverInterface $optionsResolver)
+    {
+        parent::configureDefaults($optionsResolver);
+
+        $optionsResolver->setDefaults([
+            'empty_value' => null,
+        ]);
+    }
+}
