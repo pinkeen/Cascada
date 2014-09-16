@@ -10,7 +10,7 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
  *
  * Remember to call ::resolveConfiguration with the user supplied options.
  */
-trait Configurable
+trait ConfigurableTrait
 {
     /**
      * Array of resolved options.

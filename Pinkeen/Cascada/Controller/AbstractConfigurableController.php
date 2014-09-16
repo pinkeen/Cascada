@@ -2,7 +2,7 @@
 
 namespace Pinkeen\Cascada\Controller;
 
-use Pinkeen\Cascada\Configurable;
+use Pinkeen\Cascada\ConfigurableTrait;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
@@ -14,7 +14,7 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
  */
 abstract class AbstractConfigurableController extends BaseController
 {
-    use Configurable;
+    use ConfigurableTrait;
 
     public function __construct()
     {

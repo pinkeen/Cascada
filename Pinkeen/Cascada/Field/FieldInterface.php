@@ -23,10 +23,28 @@ interface FieldInterface
     public function getLabel();
 
     /**
+     * Returns true if the string returned by render is safe and needn't be escaped.
+     *
+     * @return bool
+     */
+    public function isSafe();
+
+    /**
      * Returns html representation of entity's field.
      *
      * @param object|array $entity
      * @return string
      */
     public function render($entity);
+
+    /**
+     * Sets hints.
+     *
+     * Hints can be specials values indicating certain aspects of the environment in which the field is rendered.
+     *
+     * They may ignored or used by the field for adaptation.
+     *
+     * @param array $hints
+     */
+    public function setHints(array $hints);
 }

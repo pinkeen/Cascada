@@ -4,7 +4,7 @@ namespace Pinkeen\CascadaDemoBundle\Controller;
 
 use Pinkeen\Cascada\Controller\AbstractCrudController;
 use Pinkeen\Cascada\Controller\BaseController;
-use Pinkeen\Cascada\Field\ReflectiveField;
+use Pinkeen\Cascada\Field\AbstractReflectiveField;
 
 class BookController extends AbstractCrudController
 {
