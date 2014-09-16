@@ -7,6 +7,7 @@ use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
@@ -329,6 +330,19 @@ class BaseController extends ContainerAware
         }
 
         return $this->createRouteRedirect($altRoute);
+    }
+
+    /**
+     * Renders template and wraps it in a Response object.
+     *
+     * @param string $template
+     * @param array $parameters
+     * @param int $status
+     * @return Response
+     */
+    protected function renderResponse($template, array $parameters = [], $status = 200)
+    {
+        return new Response($this->getTemplating()->render($template, $parameters), $status);
     }
 
     /**

@@ -14,7 +14,7 @@ abstract class AbstractCrudController extends AbstractConfigurableController
     /**
      * {@inheritdoc}
      */
-    protected function configureDefaults(OptionsResolverInterface $optionResolver)
+    protected function configureDefaults(OptionsResolverInterface $optionsResolver)
     {
         $optionResolver->setDefaults([
 

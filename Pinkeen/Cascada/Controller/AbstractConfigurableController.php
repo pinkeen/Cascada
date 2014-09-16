@@ -2,6 +2,7 @@
 
 namespace Pinkeen\Cascada\Controller;
 
+use Pinkeen\Cascada\Configurable;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
@@ -11,53 +12,13 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
  * The convention is that all of the options are scalars (strings, ints, ...).
  * Configuration using class instances should be done using dedicated methods - ex. ::add*().
  */
-abstract class AbstractConfigurableController
+abstract class AbstractConfigurableController extends BaseController
 {
-    /**
-     * Array of resolved options.
-     *
-     * Private so nobody directly messes with this stuff.
-     *
-     * @var array
-     */
-    private $options;
+    use Configurable;
 
-    /**
-     * Sets up the options array.
-     */
     public function __construct()
     {
-        $optionResolver = new OptionsResolver();
-
-        $this->configureDefaults($optionResolver);
-
-        $optionResolver->resolve($this->getConfiguration());
-    }
-
-    /**
-     * Returns array of resolved options.
-     *
-     * @return array
-     */
-    protected function getOptions()
-    {
-        return $this->options;
-    }
-
-    /**
-     * Returns an option by name.
-     *
-     * @param $name
-     * @throws \LogicException
-     * @return string
-     */
-    protected function getOption($name)
-    {
-        if (!array_key_exists($name, $this->options)) {
-            throw new \LogicException("Requested an option '{$name}' which does not exist.");
-        }
-
-        return $this->options[$name];
+        $this->resolveConfiguration($this->getConfiguration());
     }
 
     /**
@@ -68,11 +29,4 @@ abstract class AbstractConfigurableController
      * @return array
      */
     abstract protected function getConfiguration();
-
-    /**
-     * Configures the options resolver setting default options, etc.
-     *
-     * @param OptionsResolverInterface $optionResolver
-     */
-    abstract protected function configureDefaults(OptionsResolverInterface $optionResolver);
-} 
+}
