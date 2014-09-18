@@ -9,7 +9,7 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
  * Simple field for rendering \DateTime instance that relies on it's ::format() function.
  *
  * This can't do localization.
- * 
+ *
  * TODO: Write LocalizedDateTimeField which uses IntlDateFormatter and/or strftime (no dates before 1970, ugh).
  */
 class DateTimeField extends AbstractReflectiveField
@@ -17,9 +17,9 @@ class DateTimeField extends AbstractReflectiveField
     /**
      * {@inheritdoc}
      */
-    public function render($entity)
+    public function render($item)
     {
-        $date = $this->getFieldValue($entity);
+        $date = $this->getFieldValue($item);
 
         if (null === $date) {
             return $this->getOption('empty_value');

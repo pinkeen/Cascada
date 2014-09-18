@@ -17,9 +17,9 @@ class ScalarField extends AbstractReflectiveField
      *
      * @throws \UnexpectedValueException
      */
-    public function render($entity)
+    public function render($item)
     {
-        $value = $this->getFieldValue($entity);
+        $value = $this->getFieldValue($item);
 
         if (null !== $this->getOption('empty_value') && empty($value)) {
             return $this->getOption('empty_value');

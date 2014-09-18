@@ -19,7 +19,7 @@ class UnexpectedFieldValueException extends \Exception
     {
         $this->fieldName = $fieldName;
 
-        $message = sprintf("Expected field '%s' to be of type '%s' but got '%s' instead.",
+        $message = sprintf("Expected the value of field '%s' to be of type '%s' but got '%s' instead.",
             $fieldName,
             $expectedType,
             is_object($value) ? get_class($value) : gettype($value)

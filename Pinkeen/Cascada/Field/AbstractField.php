@@ -19,7 +19,7 @@ abstract class AbstractField implements FieldInterface
     const HINT_LIST_ROW_TABLE_CELL = 'LIST_ROW_TABLE_CELL';
 
     /**
-     * THe field is being rendered in an entity overview view.
+     * THe field is being rendered in an item overview view.
      */
     const HINT_SHOW_VIEW = 'SHOW_VIEW';
 

@@ -29,14 +29,14 @@ abstract class AbstractReflectiveField extends AbstractField
     }
 
     /**
-     * Retrieves the value of entity's field based on property_path option.
+     * Retrieves the value of item's field based on property_path option.
      *
-     * @param array|object $entity
+     * @param array|object $item
      * @return mixed
      */
-    protected function getFieldValue($entity)
+    protected function getFieldValue($item)
     {
-        return self::$propertyAccessor->getValue($entity, $this->getOption('property_path'));
+        return self::$propertyAccessor->getValue($item, $this->getOption('property_path'));
     }
 
     /**

@@ -11,9 +11,9 @@ class CallbackField extends AbstractField
     /**
      * {@inheritdoc}
      */
-    public function render($entity)
+    public function render($item)
     {
-        return call_user_func($this->getOption('callback'), $entity);
+        return call_user_func($this->getOption('callback'), $item);
     }
 
     /**
@@ -24,7 +24,7 @@ class CallbackField extends AbstractField
         parent::configureDefaults($optionsResolver);
 
         $optionsResolver->setRequired([
-            'callback' /* Should take exactly one argument which is the entity and shall return string. */
+            'callback' /* Should take exactly one argument which is the item and shall return string. */
         ]);
 
         $optionsResolver->setAllowedTypes([

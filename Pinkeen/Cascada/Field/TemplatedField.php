@@ -16,25 +16,25 @@ class TemplatedField extends AbstractReflectiveField implements TemplatingAwareI
     /**
      * {@inheritDoc}
      */
-    public function render($entity)
+    public function render($item)
     {
         return $this->renderTemplate(
             $this->getOption('template'),
-            $this->getRenderingParameters($entity)
+            $this->getRenderingParameters($item)
         );
     }
 
     /**
      * Returns parameters that are to be passed to tempalte.
      *
-     * @param array|object $entity
+     * @param array|object $item
      * @return array
      */
-    protected function getRenderingParameters($entity)
+    protected function getRenderingParameters($item)
     {
         return [
-            'value' => $this->getFieldValue($entity),
-            'entity' => $entity,
+            'value' => $this->getFieldValue($item),
+            'item' => $item,
             'label' => $this->getLabel(),
             'hints' => $this->getHints(),
         ];

@@ -3,7 +3,7 @@
 namespace Pinkeen\Cascada\Field;
 
 /**
- * A field view purpose is to render a html representation of an entity's field and store other metadata that is needed
+ * A field view purpose is to render a html representation of an item's field and store other metadata that is needed
  * for this purpose.
  */
 interface FieldInterface
@@ -30,12 +30,12 @@ interface FieldInterface
     public function isSafe();
 
     /**
-     * Returns html representation of entity's field.
+     * Returns html representation of item's field.
      *
-     * @param object|array $entity
+     * @param object|array $item
      * @return string
      */
-    public function render($entity);
+    public function render($item);
 
     /**
      * Sets hints.

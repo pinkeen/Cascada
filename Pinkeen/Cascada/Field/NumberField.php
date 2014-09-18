@@ -12,9 +12,9 @@ class NumberField extends AbstractReflectiveField
     /**
      * {@inheritdoc}
      */
-    public function render($entity)
+    public function render($item)
     {
-        $value = $this->getFieldValue($entity);
+        $value = $this->getFieldValue($item);
 
         if (!is_numeric($value)) {
             throw new UnexpectedFieldValueException($this->getFieldName(), '\DateTime', $value);
