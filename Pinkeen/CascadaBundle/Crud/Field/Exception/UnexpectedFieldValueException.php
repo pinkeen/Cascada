@@ -1,6 +1,6 @@
 <?php
 
-namespace Pinkeen\Cascada\Field\Exception;
+namespace Pinkeen\CascadaBundle\Crud\Field\Exception;
 
 class UnexpectedFieldValueException extends \Exception
 {

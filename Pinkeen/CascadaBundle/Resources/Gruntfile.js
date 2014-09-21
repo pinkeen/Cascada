@@ -35,10 +35,10 @@ module.exports = function(grunt) {
             pinkeencascada: {
                 files: {
                     '<%= dir.dest %>/js/top.min.js': [
-                        '<%= dir.dest %>/js/top.js',
+                        '<%= dir.dest %>/js/top.js'
                     ],
                     '<%= dir.dest %>/js/all.min.js': [
-                        '<%= dir.dest %>/js/all.js',
+                        '<%= dir.dest %>/js/all.js'
                     ]
                 }
             }

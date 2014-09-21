@@ -1,8 +1,8 @@
 <?php
 
-namespace Pinkeen\Cascada\Field;
+namespace Pinkeen\CascadaBundle\Crud\Field;
 
-use Pinkeen\Cascada\ConfigurableTrait;
+use Pinkeen\CascadaBundle\Crud\ConfigurableTrait;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
@@ -12,16 +12,6 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 abstract class AbstractField implements FieldInterface
 {
     use ConfigurableTrait;
-
-    /**
-     * The field is being rendered in a table cell in a list.
-     */
-    const HINT_LIST_ROW_TABLE_CELL = 'LIST_ROW_TABLE_CELL';
-
-    /**
-     * THe field is being rendered in an item overview view.
-     */
-    const HINT_SHOW_VIEW = 'SHOW_VIEW';
 
     /**
      * @var string
@@ -95,6 +85,18 @@ abstract class AbstractField implements FieldInterface
     protected function hasHint($hint)
     {
         return in_array($hint, $this->hints);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function addHint($hint)
+    {
+        if ($this->hasHint($hint)) {
+            return;
+        }
+
+        $this->hints[] = $hint;
     }
 
     /**

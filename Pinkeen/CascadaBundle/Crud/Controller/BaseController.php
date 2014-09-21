@@ -1,6 +1,6 @@
 <?php
 
-namespace Pinkeen\Cascada\Controller;
+namespace Pinkeen\CascadaBundle\Crud\Controller;
 
 use Symfony\Component\DependencyInjection\ContainerAware;
 use Symfony\Component\Form\FormFactoryInterface;

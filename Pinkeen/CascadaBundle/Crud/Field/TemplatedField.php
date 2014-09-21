@@ -1,9 +1,9 @@
 <?php
 
-namespace Pinkeen\Cascada\Field;
+namespace Pinkeen\CascadaBundle\Crud\Field;
 
-use Pinkeen\Cascada\Templating\TemplatingAwareInterface;
-use Pinkeen\Cascada\Templating\TemplatingAwareTrait;
+use Pinkeen\CascadaBundle\Crud\Templating\TemplatingAwareInterface;
+use Pinkeen\CascadaBundle\Crud\Templating\TemplatingAwareTrait;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
@@ -32,12 +32,12 @@ class TemplatedField extends AbstractReflectiveField implements TemplatingAwareI
      */
     protected function getRenderingParameters($item)
     {
-        return [
+        return array_merge([
             'value' => $this->getFieldValue($item),
             'item' => $item,
             'label' => $this->getLabel(),
             'hints' => $this->getHints(),
-        ];
+        ], $this->getOption('parameters'));
     }
 
     /**

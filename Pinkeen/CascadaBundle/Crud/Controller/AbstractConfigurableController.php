@@ -1,8 +1,8 @@
 <?php
 
-namespace Pinkeen\Cascada\Controller;
+namespace Pinkeen\CascadaBundle\Crud\Controller;
 
-use Pinkeen\Cascada\ConfigurableTrait;
+use Pinkeen\CascadaBundle\Crud\ConfigurableTrait;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Pinkeen\Cascada\Field;
+namespace Pinkeen\CascadaBundle\Crud\Field;
 
 /**
  * A field view purpose is to render a html representation of an item's field and store other metadata that is needed
@@ -47,4 +47,13 @@ interface FieldInterface
      * @param array $hints
      */
     public function setHints(array $hints);
+
+    /**
+     * Adds a hint.
+     *
+     * @see FieldInterface::setHints()
+     *
+     * @param string $hint
+     */
+    public function addHint($hint);
 }

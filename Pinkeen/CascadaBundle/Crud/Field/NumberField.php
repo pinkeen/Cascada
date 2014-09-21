@@ -1,6 +1,6 @@
 <?php
 
-namespace Pinkeen\Cascada\Field;
+namespace Pinkeen\CascadaBundle\Crud\Field;
 
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 

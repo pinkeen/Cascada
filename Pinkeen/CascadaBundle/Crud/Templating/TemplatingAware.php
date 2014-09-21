@@ -1,6 +1,6 @@
 <?php
 
-namespace Pinkeen\Cascada\Templating;
+namespace Pinkeen\CascadaBundle\Crud\Templating;
 
 /**
  * Base for classes that need templating injected.
