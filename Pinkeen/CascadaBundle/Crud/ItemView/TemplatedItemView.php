@@ -20,9 +20,7 @@ class TemplatedItemView extends AbstractItemView implements TemplatingAwareInter
     {
         parent::addField($field);
 
-        if ($field instanceof TemplatingAwareInterface) {
-            $field->setTemplating($this->getTemplating());
-        }
+        $this->injectTemplatingInto($field);
     }
 
     /**

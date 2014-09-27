@@ -26,9 +26,7 @@ abstract class TemplatedListView extends AbstractListView implements TemplatingA
     {
         parent::addField($field);
 
-        if ($field instanceof TemplatingAwareInterface) {
-            $field->setTemplating($this->getTemplating());
-        }
+        $this->injectTemplatingInto($field);
     }
 
     /**

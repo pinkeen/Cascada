@@ -47,4 +47,16 @@ trait TemplatingAwareTrait
     {
         return $this->getTemplating()->render($template, $parameters);
     }
+
+    /**
+     * Convenience method for conditional injecting templating into another object.
+     *
+     * @param object $potentiallyTemplatingAware
+     */
+    protected function injectTemplatingInto($potentiallyTemplatingAware)
+    {
+        if ($potentiallyTemplatingAware instanceof TemplatingAwareInterface) {
+            $potentiallyTemplatingAware->setTemplating($this->getTemplating());
+        }
+    }
 }
