@@ -14,6 +14,26 @@ abstract class AbstractField implements FieldInterface
     use ConfigurableTrait;
 
     /**
+     * This hint tells the field that there's a limited vertical space, like in a table list row so the field should
+     * limit it's height if possible
+     */
+    const HINT_LIMITED_VERTICAL_SPACE = 'LIMITED_V_SPACE';
+
+    /**
+     * This hint tells the field that there's not much horizontal space, so the field should ex. limit it's length,
+     * fit the width of the parent container, break long lines, etc.
+     *
+     * Also the field could hide itself on mobile using media queries if it's not crucial.
+     */
+    const HINT_LIMITED_HORIZONTAL_SPACE = 'LIMITED_H_SPACE';
+
+    /**
+     * The field's height should be that of one line of text. Ex. in case of the text field it should not break, but
+     * rather limit it's length or use ellipsis. In case of images a mouse-over preview may be necessary, etc.
+     */
+    const HINT_ONE_LINE_HEIGHT = 'ONE_LINE';
+
+    /**
      * @var string
      */
     private $fieldName;

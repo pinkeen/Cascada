@@ -1,13 +1,12 @@
 <?php
 
-namespace Pinkeen\CascadaBundle\Crud\View;
-
-use Pinkeen\CascadaBundle\Crud\Field\FieldInterface;
+namespace Pinkeen\CascadaBundle\Crud\ItemView;
+use Pinkeen\CascadaBundle\Crud\Field\Container\FieldContainerInterface;
 
 /**
  * Interface for classes which responsibility is to render a single item.
  */
-interface ViewInterface
+interface ItemViewInterface extends FieldContainerInterface
 {
     /**
      * Renders an item.
@@ -18,11 +17,4 @@ interface ViewInterface
      * @return string
      */
     public function render($item);
-
-    /**
-     * Adds a field to view definition.
-     *
-     * @param FieldInterface $field
-     */
-    public function addField(FieldInterface $field);
 }
