@@ -1,0 +1,16 @@
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            {% for field in fields %}
+                <th>
+                    {{ field.label }}
+                </th>
+            {% endfor %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in items %}
+            {{ row_view.render(item)|raw }}
+        {% endfor %}
+    </tbody>
+</table>

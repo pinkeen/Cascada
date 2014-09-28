@@ -1,6 +1,6 @@
 <?php
 
-namespace Pinkeen\CascadaBundle\Crud\View;
+namespace Pinkeen\CascadaBundle\Crud\ListView;
 
 use Pinkeen\CascadaBundle\Crud\ConfigurableTrait;
 use Pinkeen\CascadaBundle\Crud\Field\AbstractField;

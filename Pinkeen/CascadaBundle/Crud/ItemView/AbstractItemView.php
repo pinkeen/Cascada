@@ -1,6 +1,7 @@
 <?php
 
 namespace Pinkeen\CascadaBundle\Crud\ItemView;
+
 use Pinkeen\CascadaBundle\Crud\ConfigurableTrait;
 use Pinkeen\CascadaBundle\Crud\Field\Container\FieldContainerTrait;
 

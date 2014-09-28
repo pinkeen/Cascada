@@ -1,6 +1,6 @@
 <?php
 
-namespace Pinkeen\CascadaBundle\Crud\View;
+namespace Pinkeen\CascadaBundle\Crud\ItemView;
 
 use Pinkeen\CascadaBundle\Crud\Field\AbstractField;
 use Pinkeen\CascadaBundle\Crud\Field\FieldInterface;

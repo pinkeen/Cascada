@@ -26,7 +26,14 @@ class Book
     protected $title;
 
     /**
-     * @ORM\ManyToOne(targetEntity="author", inversedBy="books")
+     * @ORM\Column(type="datetime")
+     *
+     * @var \DateTime
+     */
+    protected $publishedAt;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Author", inversedBy="books")
      *
      * @var Author
      */
@@ -70,5 +77,21 @@ class Book
     public function getAuthor()
     {
         return $this->author;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getPublishedAt()
+    {
+        return $this->publishedAt;
+    }
+
+    /**
+     * @param \DateTime $publishedAt
+     */
+    public function setPublishedAt($publishedAt)
+    {
+        $this->publishedAt = $publishedAt;
     }
 }

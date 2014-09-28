@@ -2,9 +2,9 @@
 
 namespace Pinkeen\CascadaBundle\Crud\Controller;
 
+use Pinkeen\CascadaBundle\Crud\ListView\ListViewInterface;
+use Pinkeen\CascadaBundle\Crud\ListView\TableListView;
 use Pinkeen\CascadaBundle\Crud\Templating\TemplatingAwareInterface;
-use Pinkeen\CascadaBundle\Crud\View\ListViewInterface;
-use Pinkeen\CascadaBundle\Crud\View\TableRowView;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
@@ -27,7 +27,7 @@ abstract class AbstractCrudController extends AbstractConfigurableController
     protected function configureDefaults(OptionsResolverInterface $optionsResolver)
     {
         $optionsResolver->setDefaults([
-
+            'list_view_options' => []
         ]);
     }
 
@@ -38,7 +38,7 @@ abstract class AbstractCrudController extends AbstractConfigurableController
      */
     protected function createListView()
     {
-        return new TableRowView();
+        return new TableListView($this->getOption('list_view_options'));
     }
 
     /**
@@ -73,6 +73,17 @@ abstract class AbstractCrudController extends AbstractConfigurableController
     }
 
     /**
+     * @return array
+     */
+    abstract protected function getItems();
+
+    /**
+     * @param $id
+     * @return object|array
+     */
+    abstract protected function getItemById($id);
+
+    /**
      * Lists items.
      *
      * @param Request $request
@@ -81,5 +92,18 @@ abstract class AbstractCrudController extends AbstractConfigurableController
     public function listAction(Request $request)
     {
         $listView = $this->getListView();
+        $items = $this->getItems();
+
+        return $this->renderResponse('PinkeenCascadaBundle:Crud:list.html.twig', [
+            'list' => $listView->render($items)
+        ]);
+    }
+
+    /**
+     * @param Request $request
+     * @param string $id
+     */
+    public function showAction(Request $request, $id)
+    {
     }
 }

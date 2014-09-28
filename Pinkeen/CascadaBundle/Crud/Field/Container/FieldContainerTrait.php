@@ -37,6 +37,8 @@ trait FieldContainerTrait
         }
 
         $this->fields[$field->getFieldName()] = $field;
+
+        return $this;
     }
 
     /**

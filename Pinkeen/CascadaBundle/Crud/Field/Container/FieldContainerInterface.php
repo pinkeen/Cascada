@@ -12,6 +12,7 @@ interface FieldContainerInterface
      * Adds a field to view definition.
      *
      * @param FieldInterface $field
+     * @return FieldContainerInterface
      */
     public function addField(FieldInterface $field);
 } 

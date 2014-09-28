@@ -1,0 +1,3 @@
+cascada_demo_book_list:
+    pattern:  /book/list
+    defaults: { _controller: PinkeenCascadaDemoBundle:Book:list }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Pinkeen\CascadaBundle\Crud\Action;
+namespace Pinkeen\CascadaBundle\Crud\ Action;
 
 /**
  * Interface for actions.

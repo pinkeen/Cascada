@@ -2,15 +2,41 @@
 
 namespace Pinkeen\CascadaDemoBundle\Controller;
 
-use Pinkeen\Cascada\Controller\AbstractCrudController;
-use Pinkeen\Cascada\Controller\BaseController;
-use Pinkeen\Cascada\Field\AbstractReflectiveField;
+use Pinkeen\CascadaBundle\Crud\Controller\AbstractCrudController;
+use Pinkeen\CascadaBundle\Crud\ListView\ListViewInterface;
+use Pinkeen\CascadaBundle\Crud\Field;
 
 class BookController extends AbstractCrudController
 {
-    public function listAction()
+    /**
+     * {@inheritdoc}
+     */
+    protected function buildListView(ListViewInterface $listView)
     {
-        return $this->renderResponse('PinkeenCascadaDemoBundle:Book:list.html.twig');
+        $listView
+            ->addField(new Field\ScalarField('title'));
+        $listView->addField(new Field\DateTimeField('publishedAt'))
+        ;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function getItems()
+    {
+        return $this
+            ->getService('doctrine.orm.entity_manager')
+            ->getRepository('PinkeenCascadaDemoBundle:Book')
+            ->findAll()
+        ;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function getItemById($id)
+    {
+
     }
 
     /**

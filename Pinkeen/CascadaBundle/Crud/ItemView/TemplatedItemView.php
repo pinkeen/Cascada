@@ -1,6 +1,7 @@
 <?php
 
 namespace Pinkeen\CascadaBundle\Crud\ItemView;
+
 use Pinkeen\CascadaBundle\Crud\Field\FieldInterface;
 use Pinkeen\CascadaBundle\Crud\Templating\TemplatingAwareInterface;
 use Pinkeen\CascadaBundle\Crud\Templating\TemplatingAwareTrait;

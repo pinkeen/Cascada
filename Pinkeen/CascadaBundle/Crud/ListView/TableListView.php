@@ -4,8 +4,7 @@ namespace Pinkeen\CascadaBundle\Crud\ListView;
 
 use Pinkeen\CascadaBundle\Crud\Field\FieldInterface;
 use Pinkeen\CascadaBundle\Crud\ItemView\ItemViewInterface;
-use Pinkeen\CascadaBundle\Crud\View\TableRowView;
-use Pinkeen\CascadaBundle\Crud\View\TemplatedListView;
+use Pinkeen\CascadaBundle\Crud\ItemView\TableRowView;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
@@ -26,7 +25,6 @@ class TableListView extends TemplatedListView
         parent::__construct($options);
 
         $this->rowView = $this->createRowView();
-        $this->injectTemplatingInto($this->rowView);
     }
 
     /**
@@ -58,6 +56,8 @@ class TableListView extends TemplatedListView
      */
     protected function getRowView()
     {
+        $this->injectTemplatingInto($this->rowView);
+
         return $this->rowView;
     }
 
