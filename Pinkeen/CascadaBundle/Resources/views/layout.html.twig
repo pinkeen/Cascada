@@ -1,7 +1,8 @@
 {% extends 'PinkeenCascadaBundle::base.html.twig' %}
 
 {% block body %}
-    <div class="container">
+    {% include 'PinkeenCascadaBundle::header.html.twig' %}
+    <div class="container-fluid">
         {% block content %}
         {% endblock content %}
     </div>

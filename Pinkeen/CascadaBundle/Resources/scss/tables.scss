@@ -1,0 +1,43 @@
+
+.table {
+    @include box-shadow(0 1px 1px 0 rgba(0, 0, 0, 0.05));
+}
+
+.table-curved {
+    border-collapse: separate;
+
+    border: solid $table-border-color 1px;
+    border-radius: $table-border-radius;
+    border-left:0px;
+
+    td, th {
+        border-left: 1px solid $table-border-color;
+        border-top: 1px solid $table-border-color;
+    }
+
+    th {
+        border-top: none;
+
+        &:first-child {
+            border-radius: $table-border-radius 0 0 0;
+        }
+
+        &:last-child {
+            border-radius: 0 $table-border-radius 0 0;
+        }
+
+        &:only-child {
+            border-radius: $table-border-radius $table-border-radius 0 0;
+        }
+    }
+
+    tr:last-child {
+        td:first-child {
+            border-radius: 0 0 0 $table-border-radius;
+        }
+
+        td:last-child {
+            border-radius: 0 0 $table-border-radius 0;
+        }
+    }
+}

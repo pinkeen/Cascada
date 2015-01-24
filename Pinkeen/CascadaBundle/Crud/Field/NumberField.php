@@ -2,6 +2,7 @@
 
 namespace Pinkeen\CascadaBundle\Crud\Field;
 
+use Pinkeen\CascadaBundle\Crud\Field\Exception\UnexpectedFieldValueException;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**

@@ -1,5 +1,11 @@
 <tr>
     {% for field in fields %}
-        <td>{{ field.render(item) }}</td>
+        <td class="active">
+            {% if field.isSafe %}
+                {{ field.render(item)|raw }}
+            {% else %}
+                {{ field.render(item) }}
+            {% endif %}
+        </td>
     {% endfor %}
 </tr>

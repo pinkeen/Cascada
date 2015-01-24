@@ -111,4 +111,4 @@ module.exports = function(grunt) {
     grunt.registerTask('default', ['concat', 'uglify', 'sass', 'copy']);
     grunt.registerTask('styles', ['sass']);
     grunt.registerTask('scripts', ['concat', 'uglify']);
-}
+};

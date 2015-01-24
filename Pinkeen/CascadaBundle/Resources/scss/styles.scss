@@ -1,9 +1,14 @@
-@import "variables.scss";
+@import "vendor-variables.scss";
 
 @import "bootstrap-sass-official/vendor/assets/stylesheets/bootstrap/bootstrap.scss";
 @import "fontawesome/scss/font-awesome.scss";
 @import "open-sans/scss/open-sans.scss";
 
+@import "variables.scss";
+
 @import "base.scss";
 @import "alerts.scss";
+@import "tables.scss";
+@import "navbar.scss";
+@import "side-menu.scss";
 

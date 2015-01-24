@@ -11,7 +11,7 @@ namespace Pinkeen\CascadaBundle\Crud\ Action;
 interface ActionInterface
 {
     /**
-     * Returns html representation of an item's action..
+     * Returns html representation of an item's action.
      *
      * @param object|array $item
      * @return string

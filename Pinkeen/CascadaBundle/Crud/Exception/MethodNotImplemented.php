@@ -4,7 +4,7 @@ namespace Pinkeen\CascadaBundle\Crud\Exception;
 use Exception;
 
 /**
- * Throws an exception when a method which is optional is not implemented but needed because certain functionality
+ * Thrown when a method which is optional is not implemented but needed because certain functionality
  * is used at runtime.
  */
 class MethodNotImplemented extends \RuntimeException

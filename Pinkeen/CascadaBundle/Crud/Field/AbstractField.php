@@ -3,6 +3,7 @@
 namespace Pinkeen\CascadaBundle\Crud\Field;
 
 use Pinkeen\CascadaBundle\Crud\ConfigurableTrait;
+use Pinkeen\CascadaBundle\Utilities\StringUtilities;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
@@ -127,7 +128,7 @@ abstract class AbstractField implements FieldInterface
     protected function configureDefaults(OptionsResolverInterface $optionResolver)
     {
         $optionResolver->setDefaults([
-            'label' => ucfirst($this->fieldName),
+            'label' => StringUtilities::humanize($this->fieldName),
             'is_safe' => false, /* Whether the rendered string is safe and doesn't need escaping or not. */
         ]);
     }
