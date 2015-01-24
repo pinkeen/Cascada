@@ -16,7 +16,7 @@ class Book
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    protected  $id;
+    protected $id;
 
     /**
      * @ORM\Column(type="string", length=256)
@@ -38,6 +38,13 @@ class Book
      * @var Author
      */
     protected $author;
+
+    /**
+     * @ORM\Column(type="string", length=20)
+     *
+     * @var string
+     */
+    protected $isbn;
 
     /**
      * @return int
@@ -93,5 +100,21 @@ class Book
     public function setPublishedAt($publishedAt)
     {
         $this->publishedAt = $publishedAt;
+    }
+
+    /**
+     * @return string
+     */
+    public function getIsbn()
+    {
+        return $this->isbn;
+    }
+
+    /**
+     * @param string $isbn
+     */
+    public function setIsbn($isbn)
+    {
+        $this->isbn = $isbn;
     }
 }

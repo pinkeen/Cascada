@@ -2,6 +2,7 @@
 
 namespace Pinkeen\CascadaBundle\Crud\Field;
 
+use Pinkeen\CascadaBundle\Crud\Field\Exception\UnexpectedFieldValueException;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
@@ -27,7 +28,7 @@ class ScalarField extends AbstractReflectiveField
         }
 
         if (!$this->isCoercibleToString($value)) {
-            throw new \UnexpectedValueException("Value of field '{$this->getName()}' cannot be converted to string.");
+            throw new UnexpectedFieldValueException($this->getFieldName(), 'coercible to string', $value);
         }
 
         return strval($value);

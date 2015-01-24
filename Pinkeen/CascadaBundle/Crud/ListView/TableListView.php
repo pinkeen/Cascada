@@ -35,6 +35,8 @@ class TableListView extends TemplatedListView
         parent::addField($field);
 
         $this->rowView->addField($field);
+
+        return $this;
     }
 
     /**
