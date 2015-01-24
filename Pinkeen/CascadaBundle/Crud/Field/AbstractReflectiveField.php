@@ -7,7 +7,8 @@ use Symfony\Component\PropertyAccess\PropertyAccess;
 use Symfony\Component\PropertyAccess\PropertyAccessor;
 
 /**
- * Can retrieve the field's data using reflection.
+ * Can retrieve the field's data using reflection
+ * or with user-supplied callback.
  */
 abstract class AbstractReflectiveField extends AbstractField
 {
@@ -36,6 +37,10 @@ abstract class AbstractReflectiveField extends AbstractField
      */
     protected function getFieldValue($item)
     {
+        if ($this->hasOption('callback')) {
+            return call_user_func($this->getOption('callback'), $item);
+        }
+
         return self::$propertyAccessor->getValue($item, $this->getOption('property_path'));
     }
 
@@ -48,6 +53,14 @@ abstract class AbstractReflectiveField extends AbstractField
 
         $optionsResolver->setDefaults([
             'property_path' => $this->getFieldName(),
+        ]);
+
+        $optionsResolver->setOptional([
+            'callback'
+        ]);
+
+        $optionsResolver->setAllowedTypes([
+            'callback' => 'callable',
         ]);
     }
 }

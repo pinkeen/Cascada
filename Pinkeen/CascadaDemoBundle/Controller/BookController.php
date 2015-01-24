@@ -17,7 +17,7 @@ class BookController extends AbstractCrudController
         $listView
             ->addField(new Field\ScalarField('title'))
             ->addField(new Field\DateTimeField('publishedAt'))
-            ->addField(new Field\CallbackField('author', [
+            ->addField(new Field\ScalarField('author', [
                 'callback' => function(Book $book) {
                     return $book->getAuthor()->getFirstName() . ' ' . $book->getAuthor()->getLastName();
                 }

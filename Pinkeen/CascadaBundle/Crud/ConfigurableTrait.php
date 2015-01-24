@@ -40,11 +40,22 @@ trait ConfigurableTrait
      */
     protected function getOption($name)
     {
-        if (!array_key_exists($name, $this->options)) {
+        if (!$this->hasOption($name)) {
             throw new \LogicException("Requested an option '{$name}' which does not exist.");
         }
 
         return $this->options[$name];
+    }
+
+    /**
+     * Checks whether the option exists.
+     *
+     * @param string $name
+     * @return bool
+     */
+    protected function hasOption($name)
+    {
+        return array_key_exists($name, $this->options);
     }
 
     /**
