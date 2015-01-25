@@ -2,6 +2,7 @@
 
 namespace Pinkeen\CascadaDemoBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -111,7 +112,7 @@ class Author
     }
 
     /**
-     * @param \Pinkeen\CascadaDemoBundle\Entity\Book[] $books
+     * @param Book[] $books
      */
     public function setBooks($books)
     {
@@ -119,7 +120,7 @@ class Author
     }
 
     /**
-     * @return \Pinkeen\CascadaDemoBundle\Entity\Book[]
+     * @return ArrayCollection
      */
     public function getBooks()
     {
