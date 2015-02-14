@@ -1,6 +1,7 @@
 <?php
 
 namespace Pinkeen\CascadaBundle\Crud\Exception;
+
 use Exception;
 
 /**
@@ -13,9 +14,9 @@ class MethodNotImplemented extends \RuntimeException
      * @param object $object
      * @param string $methodName
      * @param string|null $explanation
-     * @param \Exception $previous
+     * @param Exception $previous
      */
-    public function __construct($object, $methodName, $explanation = null, \Exception $previous = null)
+    public function __construct($object, $methodName, $explanation = null, Exception $previous = null)
     {
         $message = sprintf("Method '%s::%s' not implemented but called");
 
