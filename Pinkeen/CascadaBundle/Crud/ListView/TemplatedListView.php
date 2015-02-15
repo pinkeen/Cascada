@@ -6,8 +6,6 @@ use Pinkeen\CascadaBundle\Crud\ConfigurableTrait;
 use Pinkeen\CascadaBundle\Crud\Field\AbstractField;
 use Pinkeen\CascadaBundle\Crud\Field\Container\FieldContainerTrait;
 use Pinkeen\CascadaBundle\Crud\Field\FieldInterface;
-use Pinkeen\CascadaBundle\Crud\ListView\AbstractListView;
-use Pinkeen\CascadaBundle\Crud\ListView\ListViewInterface;
 use Pinkeen\CascadaBundle\Crud\Templating\TemplatingAwareInterface;
 use Pinkeen\CascadaBundle\Crud\Templating\TemplatingAwareTrait;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;

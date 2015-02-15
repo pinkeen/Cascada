@@ -17,7 +17,7 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 abstract class AbstractCrudController extends AbstractConfigurableController
 {
     /**
-     * @var ListViewInterface
+     * @var ListInterface
      */
     private $listView = null;
 
@@ -34,7 +34,7 @@ abstract class AbstractCrudController extends AbstractConfigurableController
     /**
      * Creates a list view.
      *
-     * @return ListViewInterface
+     * @return ListInterface
      */
     protected function createListView()
     {

@@ -17,7 +17,7 @@ class ScalarField extends AbstractReflectiveField
      *
      * Throws exception if the field cannot be coerced to string.
      *
-     * @throws \UnexpectedValueException
+     * @throws UnexpectedFieldValueException
      */
     public function render($item)
     {

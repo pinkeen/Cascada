@@ -11,7 +11,17 @@
         </thead>
         <tbody>
             {% for item in items %}
-                {{ row_view.render(item)|raw }}
+                <tr>
+                    {% for field in fields %}
+                        <td class="active">
+                            {% if field.isSafe %}
+                                {{ field.render(item)|raw }}
+                            {% else %}
+                                {{ field.render(item) }}
+                            {% endif %}
+                        </td>
+                    {% endfor %}
+                </tr>
             {% endfor %}
         </tbody>
     </table>

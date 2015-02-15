@@ -2,9 +2,8 @@
 
 namespace Pinkeen\CascadaBundle\Crud\ListView;
 
+use Pinkeen\CascadaBundle\Crud\Field\AbstractField;
 use Pinkeen\CascadaBundle\Crud\Field\FieldInterface;
-use Pinkeen\CascadaBundle\Crud\ItemView\ItemViewInterface;
-use Pinkeen\CascadaBundle\Crud\ItemView\TableRowView;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
@@ -13,64 +12,17 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 class TableListView extends TemplatedListView
 {
     /**
-     * @var ItemViewInterface
-     */
-    private $rowView;
-
-    /**
-     * {@inheritdoc}
-     */
-    public function __construct(array $options = [])
-    {
-        parent::__construct($options);
-
-        $this->rowView = $this->createRowView();
-    }
-
-    /**
      * {@inheritdoc}
      */
     public function addField(FieldInterface $field)
     {
+        $field->addHint(AbstractField::HINT_ONE_LINE_HEIGHT);
+        $field->addHint(AbstractField::HINT_LIMITED_HORIZONTAL_SPACE);
+        $field->addHint(AbstractField::HINT_LIMITED_VERTICAL_SPACE);
+
         parent::addField($field);
 
-        $this->rowView->addField($field);
-
         return $this;
-    }
-
-    /**
-     * Creates a new instance of view for rendering a row.
-     *
-     * Override this method if you want to use a custom row view.
-     *
-     * @return ItemViewInterface
-     */
-    protected function createRowView()
-    {
-        return new TableRowView();
-    }
-
-    /**
-     * Returns item view for rendering a row.
-     *
-     * @return ItemViewInterface
-     */
-    protected function getRowView()
-    {
-        $this->injectTemplatingInto($this->rowView);
-
-        return $this->rowView;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    protected function getRenderingParameters($items)
-    {
-        return array_merge(parent::getRenderingParameters($items), [
-            'row_view' => $this->getRowView()
-        ]);
     }
 
     /**
