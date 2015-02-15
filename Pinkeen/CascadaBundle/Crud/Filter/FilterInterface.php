@@ -25,4 +25,13 @@ interface FilterInterface extends RequestAwareInterface, TemplatingAwareInterfac
      * @return string
      */
     public function render();
+
+    /**
+     * Returns the name of the filter.
+     *
+     * The name is used as an id and as a name of the query parameter.
+     *
+     * @return string
+     */
+    public function getName();
 }

@@ -67,9 +67,9 @@ abstract class AbstractFilter implements FilterInterface
     }
 
     /**
-     * @return string
+     * {@inheritdoc}
      */
-    protected function getName()
+    public function getName()
     {
         return $this->name;
     }

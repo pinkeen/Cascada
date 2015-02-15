@@ -2,6 +2,7 @@
 
 namespace Pinkeen\CascadaBundle\Crud\Controller;
 
+use Pinkeen\CascadaBundle\Crud\Filter\FilterManager;
 use Pinkeen\CascadaBundle\Crud\ListView\ListViewInterface;
 use Pinkeen\CascadaBundle\Crud\ListView\TableListView;
 use Pinkeen\CascadaBundle\Crud\Templating\TemplatingAwareInterface;
@@ -20,6 +21,11 @@ abstract class AbstractCrudController extends AbstractConfigurableController
      * @var ListViewInterface
      */
     private $listView = null;
+
+    /**
+     * @var FilterManager
+     */
+    private $filterManager = null;
 
     /**
      * {@inheritdoc}
@@ -70,6 +76,28 @@ abstract class AbstractCrudController extends AbstractConfigurableController
         $this->buildListView($listView);
 
         return $this->listView = $listView;
+    }
+
+    /**
+     * Builds the filter chain.
+     *
+     * Adds filters to the chain.
+     *
+     * @param FilterManager $filterManager
+     */
+    protected function buildFilterChain(FilterManager $filterManager) {}
+
+    /**
+     * @return FilterManager
+     */
+    protected function getFilterManager()
+    {
+        if (null === $this->filterManager) {
+            $this->filterManager = new FilterManager($this->getRequestStack(), $this->getTemplating());
+            $this->buildFilterChain($this->filterManager);
+        }
+
+        return $this->filterManager;
     }
 
     /**
