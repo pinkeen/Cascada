@@ -30,6 +30,8 @@ abstract class AbstractListView extends FieldContainer implements ListViewInterf
     public function addField(FieldInterface $field)
     {
         $this->injectTemplatingInto($field);
+
+        parent::addField($field);
     }
 
     /**
