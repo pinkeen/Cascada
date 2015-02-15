@@ -3,6 +3,7 @@
 namespace Pinkeen\CascadaBundle\Crud\Templating;
 
 use Symfony\Component\Templating\EngineInterface;
+use LogicException;
 
 /**
  * Common code for classes that need templating injected.
@@ -29,8 +30,8 @@ trait TemplatingAwareTrait
      */
     protected function getTemplating()
     {
-        if(null === $this->templating) {
-            throw new \LogicException('Templating requested but not injected beforehand.');
+        if (null === $this->templating) {
+            throw new LogicException('Templating requested but not injected beforehand.');
         }
 
         return $this->templating;

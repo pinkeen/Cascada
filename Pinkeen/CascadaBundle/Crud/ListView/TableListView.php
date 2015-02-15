@@ -9,7 +9,7 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 /**
  * Displays items in a table.
  */
-class TableListView extends TemplatedListView
+class TableListView extends AbstractListView
 {
     /**
      * {@inheritdoc}

@@ -121,9 +121,7 @@ abstract class AbstractField implements FieldInterface
     }
 
     /**
-     * Configures the options resolver setting default options, etc.
-     *
-     * @param OptionsResolverInterface $optionResolver
+     * {@inheritdoc}
      */
     protected function configureDefaults(OptionsResolverInterface $optionResolver)
     {

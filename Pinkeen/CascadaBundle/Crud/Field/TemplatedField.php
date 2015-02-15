@@ -51,6 +51,11 @@ class TemplatedField extends AbstractReflectiveField implements TemplatingAwareI
             'parameters' => [], /* Additional parameters to be passed to template. */
         ]);
 
+        $optionsResolver->setAllowedTypes([
+            'parameters' => 'array',
+            'template' => 'string',
+        ]);
+
         $optionsResolver->replaceDefaults([
             'is_safe' => true /* The templating engine should now handle the escaping, we want to output html. */
         ]);
