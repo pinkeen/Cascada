@@ -2,12 +2,12 @@
 
 namespace Cascada\DemoBundle\Controller;
 
-use Cascada\AdminCoreBundle\Crud\Controller\AbstractCrudController;
-use Cascada\AdminCoreBundle\Crud\ListView\ListViewInterface;
-use Cascada\AdminCoreBundle\Crud\Field;
+use Cascada\CoreBundle\Admin\Controller\AbstractAdminController;
+use Cascada\CoreBundle\Admin\ListView\ListViewInterface;
+use Cascada\CoreBundle\Admin\Field;
 use Cascada\DemoBundle\Entity\Book;
 
-class BookController extends AbstractCrudController
+class BookController extends AbstractAdminController
 {
     /**
      * {@inheritdoc}
