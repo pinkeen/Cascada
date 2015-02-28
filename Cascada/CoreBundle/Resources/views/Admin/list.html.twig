@@ -1,5 +1,7 @@
-{% extends 'PinkeenCascadaBundle::layout.html.twig' %}
+{% extends 'CascadaCoreBundle::layout.html.twig' %}
 
 {% block content %}
+    {{ filter_manager.get('has_isbn').render()|raw }}
+    {{ filter_manager.get('title').render()|raw }}
     {{ list|raw }}
 {% endblock %}

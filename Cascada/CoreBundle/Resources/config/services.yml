@@ -1,1 +1,5 @@
 services:
+    twig.cascada.core.admin_extension:
+        class: Cascada\CoreBundle\Twig\AdminExtension
+        tags:
+            - { name: twig.extension }

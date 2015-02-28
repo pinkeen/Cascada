@@ -2,7 +2,7 @@
 
 namespace Cascada\CoreBundle\Admin\Controller;
 
-use Cascada\CoreBundle\Admin\Filter\FilterManager;
+use Cascada\CoreBundle\Admin\Filter\Manager\FilterManager;
 use Cascada\CoreBundle\Admin\ListView\ListViewInterface;
 use Cascada\CoreBundle\Admin\ListView\TableListView;
 use Cascada\CoreBundle\Admin\Templating\TemplatingAwareInterface;
@@ -101,9 +101,28 @@ abstract class AbstractAdminController extends AbstractConfigurableController
     }
 
     /**
+     * @return mixed
+     */
+    abstract protected function createListQueryBuilder();
+
+    /**
+     * @param $queryBuilder
      * @return array
      */
-    abstract protected function getItems();
+    abstract protected function executeQueryBuilderQuery($queryBuilder);
+
+    /**
+     * @return array
+     */
+    protected function getListItems()
+    {
+        $queryBuilder = $this->createListQueryBuilder();
+
+        $this->getFilterManager()->applyFilters($queryBuilder);
+
+        return $this->executeQueryBuilderQuery($queryBuilder);
+    }
+
 
     /**
      * @param $id
@@ -120,10 +139,11 @@ abstract class AbstractAdminController extends AbstractConfigurableController
     public function listAction(Request $request)
     {
         $listView = $this->getListView();
-        $items = $this->getItems();
+        $items = $this->getListItems();
 
-        return $this->renderResponse('PinkeenCascadaBundle:Admin:list.html.twig', [
-            'list' => $listView->render($items)
+        return $this->renderResponse('CascadaCoreBundle:Admin:list.html.twig', [
+            'list' => $listView->render($items),
+            'filter_manager' => $this->getFilterManager(),
         ]);
     }
 

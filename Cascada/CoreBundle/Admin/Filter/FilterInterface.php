@@ -34,4 +34,13 @@ interface FilterInterface extends RequestAwareInterface, TemplatingAwareInterfac
      * @return string
      */
     public function getName();
+
+    /**
+     * Label - used during rendering.
+     *
+     * May be used as a header, input placeholder etc.
+     *
+     * @return string
+     */
+    public function getLabel();
 }

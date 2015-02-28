@@ -9,10 +9,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
         {% block css %}
-            <link rel="stylesheet" type="text/css" href="{{ asset('bundles/pinkeencascada/css/styles.css') }}">
+            <link rel="stylesheet" type="text/css" href="{{ asset('bundles/cascadacore/css/styles.css') }}">
         {% endblock %}
 
-        <script src="{{ asset('bundles/pinkeencascada/js/top.min.js') }}"></script>
+        <script src="{{ asset('bundles/cascadacore/js/top.min.js') }}"></script>
 
         {% if app.debug %}
             <script src="//localhost:35729/livereload.js"></script>
@@ -23,7 +23,7 @@
         {% endblock %}
 
         {% block js %}
-            <script src="{{ asset('bundles/pinkeencascada/js/all.min.js') }}"></script>
+            <script src="{{ asset('bundles/cascadacore/js/all.min.js') }}"></script>
         {% endblock %}
     </body>
 </html>

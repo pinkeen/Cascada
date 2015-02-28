@@ -31,7 +31,7 @@ class TableListView extends AbstractListView
     protected function configureDefaults(OptionsResolverInterface $optionsResolver)
     {
         $optionsResolver->setDefaults([
-            'template' => 'PinkeenCascadaBundle:ListView:table.html.twig'
+            'template' => 'CascadaCoreBundle:ListView:table.html.twig'
         ]);
     }
 } 

@@ -18,11 +18,11 @@ module.exports = function(grunt) {
                     ],
                     '<%= dir.dest %>/js/all.js': [
                         '<%= dir.scripts %>/**/*.js',
-                        '<%= dir.bower %>/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/modal.js',
-                        '<%= dir.bower %>/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/alert.js',
-                        '<%= dir.bower %>/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/tooltip.js',
-                        '<%= dir.bower %>/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/tab.js',
-                        '<%= dir.bower %>/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/popover.js',
+                        '<%= dir.bower %>/bootstrap-sass/assets/javascripts/bootstrap/modal.js',
+                        '<%= dir.bower %>/bootstrap-sass/assets/javascripts/bootstrap/alert.js',
+                        '<%= dir.bower %>/bootstrap-sass/assets/javascripts/bootstrap/tooltip.js',
+                        '<%= dir.bower %>/bootstrap-sass/assets/javascripts/bootstrap/tab.js',
+                        '<%= dir.bower %>/bootstrap-sass/assets/javascripts/bootstrap/popover.js',
                         '<%= dir.bower %>/bootbox/bootbox.js'
                     ]
                 }
@@ -47,7 +47,8 @@ module.exports = function(grunt) {
             options: {
                 sourcemap: true,
                 style: 'compressed',
-                loadPath: '<%= dir.bower %>'
+                includePaths: ['<%= dir.bower %>']
+                //loadPath: '<%= dir.bower %>'
             },
             pinkeencascada: {
                 files: {
@@ -66,7 +67,7 @@ module.exports = function(grunt) {
                     },
                     {
                         expand: true,
-                        cwd: '<%= dir.bower %>/bootstrap-sass-official/vendor/assets/fonts/bootstrap',
+                        cwd: '<%= dir.bower %>/bootstrap-sass/assets/fonts/bootstrap',
                         src: '**/*',
                         dest: '<%= dir.dest %>/fonts/bootstrap/'
                     },
@@ -105,7 +106,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-watch');
-    grunt.loadNpmTasks('grunt-contrib-sass');
+    grunt.loadNpmTasks('grunt-sass');
     grunt.loadNpmTasks('grunt-contrib-copy');
 
     grunt.registerTask('default', ['concat', 'uglify', 'sass', 'copy']);

@@ -36,7 +36,7 @@ trait ConfigurableTrait
      *
      * @param $name
      * @throws \LogicException
-     * @return string
+     * @return mixed
      */
     protected function getOption($name)
     {

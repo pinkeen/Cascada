@@ -1,6 +1,7 @@
 <?php
 
-namespace Cascada\CoreBundle\Admin\Filter;
+namespace Cascada\CoreBundle\Admin\Filter\Manager;
+use Cascada\CoreBundle\Admin\Filter\FilterInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Templating\EngineInterface;
 
@@ -43,6 +44,7 @@ class FilterManager
      * Adds filter to the last position in the chain.
      *
      * @param FilterInterface $filter
+     * @return FilterManager
      */
     public function registerFilter(FilterInterface $filter)
     {
@@ -51,6 +53,8 @@ class FilterManager
 
         $this->filterChain[] = $filter;
         $this->filters[$filter->getName()] = $filter;
+
+        return $this;
     }
 
     /**

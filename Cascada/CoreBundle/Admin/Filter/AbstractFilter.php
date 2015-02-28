@@ -2,9 +2,12 @@
 
 namespace Cascada\CoreBundle\Admin\Filter;
 
+use Cascada\CoreBundle\Admin\Paginator\AbstractPaginator;
 use Cascada\CoreBundle\Admin\Request\RequestAwareTrait;
 use Cascada\CoreBundle\Admin\Templating\TemplatingAwareTrait;
 use Cascada\CoreBundle\Admin\ConfigurableTrait;
+use Cascada\CoreBundle\Utilities\StringUtilities;
+use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
@@ -36,15 +39,17 @@ abstract class AbstractFilter implements FilterInterface
     }
 
     /**
+     * @param $queryBuilder
+     */
+    abstract protected function handleApply($queryBuilder);
+
+    /**
      * {@inheritdoc}
      */
     public function apply($queryBuilder)
     {
-        /* Shit, another diamond problem. What about ORM, DBAL, callback handling here?
-         * Using something like an injectable or configurabel strategy??? */
-
         if (null === $this->getOption('callback')) {
-            return false;
+            return $this->handleApply($queryBuilder);
         }
 
         return call_user_func($this->getOption('callback'), $queryBuilder, $this->getValue());
@@ -75,6 +80,14 @@ abstract class AbstractFilter implements FilterInterface
     }
 
     /**
+     * {@inheritdoc}
+     */
+    public function getLabel()
+    {
+        return $this->getOption('label');
+    }
+
+    /**
      * Returns parameters that are to be passed to tempalte.
      *
      * @return array
@@ -84,7 +97,10 @@ abstract class AbstractFilter implements FilterInterface
         return array_merge([
             'name' => $this->getName(),
             'value' => $this->getValue(),
-            'options' => $this->getOptions()
+            'options' => $this->getOptions(),
+            'label' => $this->getOption('label'),
+            'request' => $this->getCurrentRequest(),
+            'page_parameter' => AbstractPaginator::PAGE_PARAMETER,
         ], $this->getOption('parameters'));
     }
 
@@ -108,14 +124,14 @@ abstract class AbstractFilter implements FilterInterface
             'callback' => null,
             'parameters' => [], /* Additional parameters to be passed to template. */
             'default_value' => null,
+            'label' => StringUtilities::humanize($this->getName()),
         ]);
 
         $optionResolver->setRequired([
-            'template',
+            'template'
         ]);
 
         $optionResolver->setAllowedTypes([
-            'callback' => 'callable',
             'template' => 'string',
             'parameters' => 'array',
         ]);

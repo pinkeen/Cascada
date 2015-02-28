@@ -3,11 +3,15 @@
 namespace Cascada\DemoBundle\Controller;
 
 use Cascada\CoreBundle\Admin\Field;
+use Cascada\CoreBundle\Admin\Filter;
+use Cascada\CoreBundle\Admin\Filter\Manager\FilterManager;
 use Cascada\CoreBundle\Admin\ListView\ListViewInterface;
 use Cascada\CoreBundle\Admin\Controller\AbstractAdminController;
+use Cascada\CoreBundle\Bridge\Doctrine\ORM\Admin\Controller\AbstractDoctrineAdminController;
 use Cascada\DemoBundle\Entity\Author;
+use Doctrine\ORM\QueryBuilder;
 
-class AuthorController extends AbstractAdminController
+class AuthorController extends AbstractDoctrineAdminController
 {
     /**
      * {@inheritdoc}
@@ -33,7 +37,7 @@ class AuthorController extends AbstractAdminController
     {
         return $this
             ->getService('doctrine.orm.entity_manager')
-            ->getRepository('PinkeenCascadaDemoBundle:Author')
+            ->getRepository('CascadaDemoBundle:Author')
             ->findAll()
         ;
     }
@@ -41,16 +45,10 @@ class AuthorController extends AbstractAdminController
     /**
      * {@inheritdoc}
      */
-    protected function getItemById($id)
-    {
-
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     protected function getConfiguration()
     {
-        return [];
+        return [
+
+        ];
     }
 }

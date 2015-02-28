@@ -1,7 +1,7 @@
 cascada_demo_book_list:
     pattern:  /book/list
-    defaults: { _controller: PinkeenCascadaDemoBundle:Book:list }
+    defaults: { _controller: CascadaDemoBundle:Book:list }
 
 cascada_demo_author_list:
     pattern:  /author/list
-    defaults: { _controller: PinkeenCascadaDemoBundle:Author:list }
+    defaults: { _controller: CascadaDemoBundle:Author:list }

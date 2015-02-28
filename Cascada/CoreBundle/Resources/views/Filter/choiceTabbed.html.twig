@@ -1,0 +1,12 @@
+<ul class="nav nav-pills nav-justified">
+    {% if options.empty_label %}
+        <li class="{% if options.empty_value == value %}active{% endif %}">
+            <a href="{{ app.request|cascada_modify_query({(name): options.empty_value, (page_parameter): null}) }}">{{ options.empty_label }}</a>
+        </li>
+    {% endif %}
+    {% for choice, label in options.choices %}
+        <li class="{% if choice == value %}active{% endif %}">
+            <a href="{{ app.request|cascada_modify_query({(name): choice, (page_parameter): null}) }}">{{ label }}</a>
+        </li>
+    {% endfor %}
+</ul>

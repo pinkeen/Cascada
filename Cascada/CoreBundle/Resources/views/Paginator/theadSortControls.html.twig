@@ -1,0 +1,11 @@
+<a href="{{ app.request|cascada_modify_query({(order_parameter): field, (direction_parameter): new_direction}) }}">
+    {{ label }}
+    {% if active %}
+        {% if is_asc %}
+            <i class="glyphicon glyphicon-arrow-down"></i>
+        {% endif %}
+        {% if is_desc %}
+            <i class="glyphicon glyphicon-arrow-up"></i>
+        {% endif %}
+    {% endif %}
+</a>

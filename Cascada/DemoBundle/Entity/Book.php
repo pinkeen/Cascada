@@ -40,7 +40,7 @@ class Book
     protected $author;
 
     /**
-     * @ORM\Column(type="string", length=20)
+     * @ORM\Column(type="string", length=20, nullable=true)
      *
      * @var string
      */

@@ -17,6 +17,10 @@ class NumberField extends AbstractReflectiveField
     {
         $value = $this->getFieldValue($item);
 
+        if (null === $value) {
+            return $this->getOption('empty_value');
+        }
+
         if (!is_numeric($value)) {
             throw new UnexpectedFieldValueException($this->getFieldName(), '\DateTime', $value);
         }
@@ -37,6 +41,7 @@ class NumberField extends AbstractReflectiveField
         parent::configureDefaults($optionsResolver);
 
         $optionsResolver->setDefaults([
+            'empty_value' => '',
             'decimals' => 2,
             'decimal_point' => '.',
             'thousands_separator' => ' ',

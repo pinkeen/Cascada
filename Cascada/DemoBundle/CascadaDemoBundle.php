@@ -4,6 +4,6 @@ namespace Cascada\DemoBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-class PinkeenCascadaDemoBundle extends Bundle
+class CascadaDemoBundle extends Bundle
 {
 }
